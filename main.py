@@ -24,7 +24,7 @@ for path in sorted(glob.glob('input/**/*.m2ts')):
                 raise
             meta = raw['MetaDataList'][0]
             ts = dt.datetime(1899, 12, 30, tzinfo=JST) + dt.timedelta(days=meta['DateTimeOriginal'])
-            lat, lon = meta['Geolocation'].get('Latitude'), meta['Geolocation'].get('Longitude')
+            lat, lon = meta.get('Geolocation', {}).get('Latitude'), meta.get('Geolocation', {}).get('Longitude')
             data = {
                 'creation_time': ts.astimezone(UTC).strftime('%Y-%m-%dT%H:%M:%S.%fZ'),
                 'date': ts.isoformat(),
