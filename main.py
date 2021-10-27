@@ -38,7 +38,7 @@ for path in sorted(glob.glob('input/**/*.m2ts')):
         }
 
     metadata_string = ' '.join([f'-metadata {k}="{v}"' for k, v in data.items() if v is not None])
-    cmd = f'ffmpeg -y -i {path} {metadata_string} {output}'
+    cmd = f'ffmpeg -y -i {path} -codec:v copy -codec:a copy {metadata_string} {output}'
     print('\n\ncall ------')
     print(cmd)
     subprocess.call(cmd, shell=True)
