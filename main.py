@@ -9,7 +9,7 @@ JST = dt.timezone(dt.timedelta(hours=9))
 UTC = dt.timezone(dt.timedelta(hours=0))
 
 
-for path in sorted(glob.glob('input/**/*.m2ts')):
+for path in sorted(glob.glob('input/**/*.m2ts', recursive=True)):
     output = f"{path.replace('input/', 'output/').replace('.m2ts', '')}.mp4"
     os.makedirs(os.path.dirname(output), exist_ok=True)
     modd_path = path + '.modd'
